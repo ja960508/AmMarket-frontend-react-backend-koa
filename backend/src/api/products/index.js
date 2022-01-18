@@ -1,11 +1,27 @@
-const Router = require("koa-router");
+import Router from "koa-router";
+import * as productsCtrl from "./products.ctrl";
+import checkLoggedIn from "../../lib/checkLoggedIn";
 
 const products = new Router();
-const productsCtrl = require("./products.controller");
 
-products.post("/", productsCtrl.create);
+products.post("/", checkLoggedIn, productsCtrl.write);
 products.get("/", productsCtrl.list);
-products.delete("/:id", productsCtrl.delete);
-products.patch("/:id", productsCtrl.update);
 
-module.exports = products;
+const product = new Router();
+product.delete(
+  "/",
+  checkLoggedIn,
+  productsCtrl.checkOwnProduct,
+  productsCtrl.remove
+);
+product.patch(
+  "/",
+  checkLoggedIn,
+  productsCtrl.checkOwnProduct,
+  productsCtrl.update
+);
+product.get("/", productsCtrl.read);
+
+products.use("/:id", productsCtrl.getProductById, product.routes());
+
+export default products;
