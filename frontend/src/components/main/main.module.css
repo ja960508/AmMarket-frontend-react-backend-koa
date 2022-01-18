@@ -5,6 +5,37 @@
   background-color: gray;
 }
 
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  margin: 0.5rem;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.815);
+  cursor: pointer;
+}
+
+.itemImage {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  margin-right: 2rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info span {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 720px) {
 }
 

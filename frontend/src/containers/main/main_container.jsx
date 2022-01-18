@@ -1,13 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Main from "../../components/main/main";
+import { getProductList } from "../../modules/products";
 
 const MainContainer = () => {
   const { products } = useSelector(({ products }) => ({
     products: products.products,
   }));
+  const dispatch = useDispatch();
 
-  console.log(products);
+  useEffect(() => {
+    dispatch(getProductList());
+  }, [dispatch]);
 
   return <Main products={products} />;
 };

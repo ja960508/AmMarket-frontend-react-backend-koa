@@ -3,7 +3,19 @@ import styles from "./main.module.css";
 import HeaderContainer from "../../containers/header/header_container";
 
 const Product = ({ item }) => {
-  return <li>{item.name}</li>;
+  return (
+    <li className={styles.item}>
+      <img
+        src={item.productImage}
+        alt='productImage'
+        className={styles.itemImage}
+      />
+      <div className={styles.info}>
+        <span>{item.name}</span>
+        <span>{item.price}원</span>
+      </div>
+    </li>
+  );
 };
 
 const Main = ({ products }) => {

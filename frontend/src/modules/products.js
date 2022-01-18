@@ -1,42 +1,40 @@
 import { createAction, handleActions } from "redux-actions";
-
-const PRODUCT_REGIST = "product/PRODUCT_REGIST";
-const PRODUCT_REMOVE = "product/PRODUCT_REMOVE";
-const PRODUCT_MODIFY = "product/PRODUCT_MODIFY";
-
-export const productRegist = createAction(PRODUCT_REGIST);
-export const productRrmove = createAction(PRODUCT_REMOVE);
-export const productModify = createAction(PRODUCT_MODIFY);
+import createRequestSaga, {
+  createRequestActionTypes,
+} from "../lib/create_request_saga";
+import * as product from "../lib/api/product";
+import { takeLatest } from "redux-saga/effects";
 
 const initialState = {
-  products: [
-    {
-      name: "stock1",
-      price: 3000,
-      numOfProducts: 5,
-      productImage: "123",
-    },
-    { name: "stock2", price: 3000, numOfProducts: 5, productImage: "123" },
-  ],
+  products: [],
+  productsError: null,
 };
+
+const [GET_PRODUCT_LIST, GET_PRODUCT_LIST_SUCCESS, GET_PRODUCT_LIST_FAILURE] =
+  createRequestActionTypes("products/GET_PRODUCT_LIST");
+
+export const getProductList = createAction(GET_PRODUCT_LIST);
+
+const productListSaga = createRequestSaga(
+  GET_PRODUCT_LIST,
+  product.getProductList
+);
+
+export function* productSaga() {
+  yield takeLatest(GET_PRODUCT_LIST, productListSaga);
+}
 
 const products = handleActions(
   {
-    [PRODUCT_REGIST]: (state, payload) => {
-      return {
-        ...state,
-      };
-    },
-    [PRODUCT_REMOVE]: (state, payload) => {
-      return {
-        ...state,
-      };
-    },
-    [PRODUCT_MODIFY]: (state, payload) => {
-      return {
-        ...state,
-      };
-    },
+    [GET_PRODUCT_LIST_SUCCESS]: (state, { payload: products }) => ({
+      ...state,
+      products: products,
+      productsError: null,
+    }),
+    [GET_PRODUCT_LIST_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      productsError: error,
+    }),
   },
   initialState
 );
