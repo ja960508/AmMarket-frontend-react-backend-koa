@@ -127,3 +127,24 @@ export const update = async (ctx) => {
 export const read = (ctx) => {
   ctx.body = ctx.state.product;
 };
+
+export const buyProduct = async (ctx) => {
+  const { id } = ctx.params;
+
+  if (!ObjectId.isValid(id)) {
+    ctx.status = 400;
+    return;
+  }
+
+  let product;
+
+  try {
+    product = await Product.findByIdAndUpdate(id, ctx.request.body, {
+      new: true,
+    }).exec();
+  } catch (e) {
+    return ctx.throw(500, e);
+  }
+
+  ctx.body = product;
+};

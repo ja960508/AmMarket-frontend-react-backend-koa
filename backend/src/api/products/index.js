@@ -6,6 +6,7 @@ const products = new Router();
 
 products.post("/", checkLoggedIn, productsCtrl.write);
 products.get("/", productsCtrl.list);
+products.post("/buy/:id", productsCtrl.buyProduct);
 
 const product = new Router();
 product.delete(

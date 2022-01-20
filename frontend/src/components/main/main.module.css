@@ -14,8 +14,12 @@
 .item {
   margin: 0.5rem;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.815);
-  cursor: pointer;
+  background-color: white;
+  padding: 0.25rem;
+}
+
+.item:hover {
+  background-color: #cbeafcd2;
 }
 
 .itemImage {
@@ -23,17 +27,41 @@
   height: 10rem;
   object-fit: cover;
   margin-right: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .info {
   display: flex;
   flex-direction: column;
+  padding: 1rem 0;
+  flex: 1 1 70%;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.info span {
+.info .itemName {
   font-weight: bold;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.info .itemName:hover {
+  text-decoration: underline;
+}
+
+.info .itemPrice {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 25px;
+  color: #f24443;
+}
+
+.sellerInfo {
+  flex: 1 1 30%;
+  padding: 1rem 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 720px) {

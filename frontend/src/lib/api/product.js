@@ -7,3 +7,11 @@ export const getProductList = (query) => {
 
   return client.get("/api/products");
 };
+
+export const readProduct = (id) => {
+  return client.get(`/api/products/${id}`);
+};
+
+export const buyProduct = ({ id, numOfProducts }) => {
+  return client.post(`/api/products/buy/${id}`, { numOfProducts });
+};
