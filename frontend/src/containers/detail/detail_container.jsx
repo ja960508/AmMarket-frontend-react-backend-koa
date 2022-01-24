@@ -25,6 +25,7 @@ const DetailContainer = () => {
       })
     );
     dispatch(changeProductCount(1));
+    dispatch(readProduct(productId));
   };
 
   const onChange = (num) => {

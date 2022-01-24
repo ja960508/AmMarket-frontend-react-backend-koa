@@ -46,6 +46,12 @@
   cursor: pointer;
 }
 
+.info .numOfProducts {
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
 .info .itemName:hover {
   text-decoration: underline;
 }

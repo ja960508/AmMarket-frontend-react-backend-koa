@@ -12,6 +12,9 @@ const Detail = ({ product, productCount, onSubmit, onChange }) => {
       <div className={styles.productInfo}>
         <h3 className={styles.productName}>{product.name}</h3>
         <h3 className={styles.productPrice}>{product.price}원</h3>
+        <h3 className={styles.numOfProducts}>
+          잔여 {product.numOfProducts} 개
+        </h3>
         <h4 className={styles.seller}>{product.user.username}</h4>
         <form className={styles.purchaseForm} onSubmit={(e) => onSubmit(e)}>
           <div className={styles.countContainer}>

@@ -20,14 +20,17 @@
   font-size: 1.6rem;
 }
 
-.headerBtn {
+.btnContainer {
   position: absolute;
   right: 1rem;
-  background-color: white;
+}
+
+.headerBtn {
   outline: none;
   border: none;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
+}
+.headerBtn:first-child {
+  margin-right: 0.5rem;
 }

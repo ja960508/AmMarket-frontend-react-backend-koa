@@ -15,6 +15,9 @@ const Product = ({ item, onProductClick }) => {
         <span className={styles.itemName} onClick={() => onProductClick(item)}>
           {item.name}
         </span>
+        <span className={styles.numOfProducts}>
+          {item.numOfProducts} 개 남음
+        </span>
         <span className={styles.itemPrice}>{item.price}원</span>
       </div>
       <div className={styles.sellerInfo}>

@@ -13,11 +13,27 @@ const HeaderContainer = () => {
     navigate("/login");
   };
 
+  const onRegister = () => {
+    navigate("/register");
+  };
+
   const onLogout = () => {
     dispatch(logout());
   };
 
-  return <Header user={user} onLogin={onLogin} onLogout={onLogout} />;
+  const onPost = () => {
+    navigate("/post");
+  };
+
+  return (
+    <Header
+      user={user}
+      onLogin={onLogin}
+      onLogout={onLogout}
+      onRegister={onRegister}
+      onPost={onPost}
+    />
+  );
 };
 
 export default HeaderContainer;
