@@ -6,6 +6,7 @@ import Detail from "../../components/detail/detail";
 import {
   buyProduct,
   changeProductCount,
+  initReadProduct,
   readProduct,
 } from "../../modules/products";
 
@@ -42,6 +43,10 @@ const DetailContainer = () => {
 
   useEffect(() => {
     dispatch(readProduct(productId));
+
+    return () => {
+      dispatch(initReadProduct());
+    };
   }, [dispatch, productId]);
 
   return (

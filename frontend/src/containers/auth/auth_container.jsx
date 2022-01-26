@@ -36,6 +36,8 @@ const AuthContainer = ({ type }) => {
     }
 
     if (auth) {
+      console.log(auth);
+      localStorage.setItem("auth", auth._id);
       dispatch(check());
       navigate("/");
     }

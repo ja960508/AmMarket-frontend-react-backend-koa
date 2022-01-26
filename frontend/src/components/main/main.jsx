@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./main.module.css";
 import HeaderContainer from "../../containers/header/header_container";
+import PagenationCotainer from "../../containers/pagenation/pagenation_cotainer";
 
 const Product = ({ item, onProductClick }) => {
   return (
@@ -42,6 +43,7 @@ const Main = ({ products, onProductClick }) => {
           ))}
         </ul>
       </main>
+      <PagenationCotainer />
     </div>
   );
 };

@@ -57,7 +57,7 @@ export const write = async (ctx) => {
     return ctx.throw(500, e);
   }
 
-  ctx.body = product;
+  ctx.body = product._id;
 };
 
 export const list = async (ctx) => {

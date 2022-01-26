@@ -19,6 +19,7 @@ const HeaderContainer = () => {
 
   const onLogout = () => {
     dispatch(logout());
+    localStorage.removeItem("auth");
   };
 
   const onPost = () => {

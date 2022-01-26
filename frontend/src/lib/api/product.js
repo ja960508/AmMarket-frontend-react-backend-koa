@@ -15,3 +15,7 @@ export const readProduct = (id) => {
 export const buyProduct = ({ id, numOfProducts }) => {
   return client.post(`/api/products/buy/${id}`, { numOfProducts });
 };
+
+export const postProduct = (product) => {
+  return client.post("/api/products", product);
+};
