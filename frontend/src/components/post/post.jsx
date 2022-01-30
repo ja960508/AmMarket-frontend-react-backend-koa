@@ -1,8 +1,9 @@
 import React from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import styles from "./post.module.css";
 
-const Post = ({ onSubmit }) => {
+const Post = ({ onSubmit, product }) => {
   const fileRef = useRef();
   const nameRef = useRef();
   const numOfProductsRef = useRef();
@@ -22,6 +23,15 @@ const Post = ({ onSubmit }) => {
 
     reader.readAsDataURL(file);
   };
+
+  useEffect(() => {
+    if (product) {
+      nameRef.current.value = product.name;
+      numOfProductsRef.current.value = product.numOfProducts;
+      priceRef.current.value = product.price;
+      imageRef.current.src = product.productImage;
+    }
+  }, [product]);
 
   return (
     <div className={styles.container}>
@@ -68,7 +78,7 @@ const Post = ({ onSubmit }) => {
           <label htmlFor='price'>제품 가격</label>
           <input ref={priceRef} type='number' name='price' id='price' />
           <button type='submit' className={styles.submitBtn}>
-            제품 등록
+            제품 {product ? "수정" : "등록"}
           </button>
         </div>
       </form>

@@ -21,10 +21,11 @@ function App() {
     <Routes>
       <Route path='/' element={<Main />} />
       <Route path='/:page' element={<Main />} />
-      <Route path='/:productId' element={<Detail />} />
+      <Route path='/products/:productId' element={<Detail />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route path='/post' element={<Post />} />
+      <Route path='/post/' element={<Post />} />
+      <Route path='/post/:productId' element={<Post />} />
     </Routes>
   );
 }

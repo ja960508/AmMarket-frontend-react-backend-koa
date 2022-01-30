@@ -1,7 +1,15 @@
 import React from "react";
 import styles from "./detail.module.css";
 
-const Detail = ({ product, productCount, onSubmit, onChange }) => {
+const Detail = ({
+  product,
+  productCount,
+  onSubmit,
+  onChange,
+  authority,
+  onEdit,
+  onDelete,
+}) => {
   return product ? (
     <div className={styles.container}>
       <img
@@ -44,6 +52,17 @@ const Detail = ({ product, productCount, onSubmit, onChange }) => {
           <button type='submit' className={styles.submitBtn}>
             구매하기
           </button>
+          {authority && (
+            <div className={styles.editContainer}>
+              <button type='button' onClick={onEdit}>
+                수정
+              </button>
+              |
+              <button type='button' onClick={onDelete}>
+                삭제
+              </button>
+            </div>
+          )}
         </form>
       </div>
     </div>

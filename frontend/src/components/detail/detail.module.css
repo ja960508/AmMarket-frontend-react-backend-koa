@@ -77,3 +77,15 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
+.editContainer {
+  align-self: flex-end;
+}
+
+.editContainer button {
+  outline: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background-color: white;
+}

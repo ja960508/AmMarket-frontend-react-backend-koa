@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Main from "../../components/main/main";
 import { getProductList } from "../../modules/products";
+import qs from "qs";
 
 const MainContainer = () => {
   const { products } = useSelector(({ products }) => ({
@@ -12,12 +13,17 @@ const MainContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onProductClick = (item) => {
-    navigate(`/${item._id}`);
+    navigate(`/products/${item._id}`);
   };
+  const page = qs.parse(useLocation().search, { ignoreQueryPrefix: true }).page;
 
   useEffect(() => {
-    dispatch(getProductList());
-  }, [dispatch]);
+    if (page) {
+      dispatch(getProductList(page));
+    } else {
+      dispatch(getProductList());
+    }
+  }, [dispatch, page]);
 
   return <Main products={products} onProductClick={onProductClick} />;
 };

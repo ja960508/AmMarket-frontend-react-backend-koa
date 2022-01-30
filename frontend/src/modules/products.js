@@ -15,6 +15,8 @@ const initialState = {
   postProductError: null,
   postedProduct: null,
   lastPage: null,
+  editProductError: null,
+  deleteProductError: null,
 };
 
 const INIT_READ_PRODUCT = "products/INIT_READ_PRODUCT";
@@ -27,6 +29,10 @@ const [BUY_PRODUCT, BUY_PRODUCT_SUCCESS, BUY_PRODUCT_FAILURE] =
   createRequestActionTypes("products/BUY_PRODUCT");
 const [POST_PRODUCT, POST_PRODUCT_SUCCESS, POST_PRODUCT_FAILURE] =
   createRequestActionTypes("products/POST_PRODUCT");
+const [EDIT_PRODUCT, EDIT_PRODUCT_SUCCESS, EDIT_PRODUCT_FAILURE] =
+  createRequestActionTypes("product/EDIT_PRODUCT");
+const [DELETE_PRODUCT, DELETE_PRODUCT_SUCCESS, DELETE_PRODUCT_FAILURE] =
+  createRequestActionTypes("product/DELETE_PRODUCT");
 
 export const getProductList = createAction(GET_PRODUCT_LIST);
 export const readProduct = createAction(READ_PRODUCT);
@@ -37,6 +43,8 @@ export const changeProductCount = createAction(
 export const initReadProduct = createAction(INIT_READ_PRODUCT);
 export const buyProduct = createAction(BUY_PRODUCT);
 export const postProduct = createAction(POST_PRODUCT);
+export const editProduct = createAction(EDIT_PRODUCT);
+export const deleteProduct = createAction(DELETE_PRODUCT);
 
 // const productListSaga = createRequestSaga(
 //   GET_PRODUCT_LIST,
@@ -68,12 +76,19 @@ function* productListSaga(action) {
 const readProductSaga = createRequestSaga(READ_PRODUCT, product.readProduct);
 const buyProductSaga = createRequestSaga(BUY_PRODUCT, product.buyProduct);
 const postProductSaga = createRequestSaga(POST_PRODUCT, product.postProduct);
+const editProductSaga = createRequestSaga(EDIT_PRODUCT, product.editProduct);
+const deleteProductSaga = createRequestSaga(
+  DELETE_PRODUCT,
+  product.deleteProduct
+);
 
 export function* productSaga() {
   yield takeLatest(GET_PRODUCT_LIST, productListSaga);
   yield takeLatest(READ_PRODUCT, readProductSaga);
   yield takeLatest(BUY_PRODUCT, buyProductSaga);
   yield takeLatest(POST_PRODUCT, postProductSaga);
+  yield takeLatest(EDIT_PRODUCT, editProductSaga);
+  yield takeLatest(DELETE_PRODUCT, deleteProductSaga);
 }
 
 const products = handleActions(
@@ -121,6 +136,22 @@ const products = handleActions(
     [POST_PRODUCT_FAILURE]: (state, { payload: error }) => ({
       ...state,
       postProductError: error,
+    }),
+    [EDIT_PRODUCT_SUCCESS]: (state) => ({
+      ...state,
+      editProductError: null,
+    }),
+    [EDIT_PRODUCT_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      editProductError: error,
+    }),
+    [DELETE_PRODUCT_SUCCESS]: (state) => ({
+      ...state,
+      deleteProductError: null,
+    }),
+    [DELETE_PRODUCT_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      deleteProductError: error,
     }),
   },
   initialState

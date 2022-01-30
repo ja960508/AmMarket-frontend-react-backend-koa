@@ -19,3 +19,11 @@ export const buyProduct = ({ id, numOfProducts }) => {
 export const postProduct = (product) => {
   return client.post("/api/products", product);
 };
+
+export const editProduct = ({ id, editedInfo }) => {
+  return client.patch(`/api/products/${id}`, editedInfo);
+};
+
+export const deleteProduct = (id) => {
+  return client.delete(`/api/products/${id}`);
+};
