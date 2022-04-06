@@ -3,6 +3,7 @@ import * as productsCtrl from "./products.ctrl";
 import checkLoggedIn from "../../lib/checkLoggedIn";
 
 const products = new Router();
+const test = "hello";
 
 products.post("/", checkLoggedIn, productsCtrl.write);
 products.get("/", productsCtrl.list);
