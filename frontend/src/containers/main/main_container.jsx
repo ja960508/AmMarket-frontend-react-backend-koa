@@ -16,7 +16,6 @@ const MainContainer = () => {
     navigate(`/products/${item._id}`);
   };
   const page = qs.parse(useLocation().search, { ignoreQueryPrefix: true }).page;
-  const test = "hello";
 
   useEffect(() => {
     if (page) {

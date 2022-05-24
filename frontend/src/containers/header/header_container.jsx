@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/header";
-import { logout } from "../../modules/auth";
+import { logout } from "../../modules/auth_toolkit";
 
 const HeaderContainer = () => {
   const user = useSelector(({ auth }) => auth.user);

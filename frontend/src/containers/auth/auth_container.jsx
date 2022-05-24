@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Auth from "../../components/auth/auth";
-import { check, login, register } from "../../modules/auth";
+import { check, login, register } from "../../modules/auth_toolkit";
 import { useNavigate } from "react-router-dom";
 
 const AuthContainer = ({ type }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { auth, authError } = useSelector(({ auth }) => ({
-    auth: auth.auth,
-    authError: auth.authError,
+  const { user, error } = useSelector(({ auth }) => ({
+    user: auth.user,
+    error: auth.error,
   }));
 
   const onSubmit = (e, id, password, passwordConfirm) => {
@@ -31,17 +31,17 @@ const AuthContainer = ({ type }) => {
   };
 
   useEffect(() => {
-    if (authError) {
+    if (error) {
       console.log("error");
     }
 
-    if (auth) {
-      console.log(auth);
-      localStorage.setItem("auth", auth._id);
+    if (user) {
+      console.log(user);
+      localStorage.setItem("user", user._id);
       dispatch(check());
       navigate("/");
     }
-  }, [auth, authError, dispatch, navigate]);
+  }, [user, error, dispatch, navigate]);
 
   return <Auth type={type} onSubmit={onSubmit} />;
 };

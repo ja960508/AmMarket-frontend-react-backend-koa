@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { check } from "./modules/auth";
+import { check } from "./modules/auth_toolkit";
 import Detail from "./pages/detail";
 import Login from "./pages/login";
 import Main from "./pages/main";
@@ -20,14 +20,18 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Main />} />
-      <Route path='/:page' element={<Main />} />
-      <Route path='/products/:productId' element={<Detail />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route path='/post/' element={<Post />} />
-      <Route path='/post/:productId' element={<Post />} />
     </Routes>
   );
 }
 
 export default App;
+
+{
+  /* <Route path='/:page' element={<Main />} />
+<Route path='/products/:productId' element={<Detail />} />
+
+<Route path='/post/' element={<Post />} />
+<Route path='/post/:productId' element={<Post />} /> */
+}
